@@ -1,0 +1,26 @@
+# Installed dependencies and build output. The project has neither, but these
+# stay out of the repository if a tool ever creates them.
+node_modules/
+dist/
+build/
+out/
+coverage/
+.cache/
+
+# Created by "npm install" even though there are no dependencies
+package-lock.json
+
+# Logs and local environment files
+*.log
+npm-debug.log*
+.env
+.env.*
+
+# Packaged copies of the project
+*.zip
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

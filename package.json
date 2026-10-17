@@ -1,0 +1,14 @@
+{
+  "name": "zarrak-khan-calculator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tip and bill splitter: split a restaurant bill evenly, or by what each person ordered.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node scripts/serve.js",
+    "test": "node --test"
+  }
+}

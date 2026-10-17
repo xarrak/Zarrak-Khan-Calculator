@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tip and Bill Splitter</title>
+    <meta name="description" content="Work out a fair tip and split a restaurant bill evenly, or by what each person ordered." />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Tip and Bill Splitter</h1>
+        <p class="intro">Enter the amounts from the receipt, choose a tip, and see who pays what.</p>
+      </header>
+
+      <!-- autocomplete="off" stops the browser restoring old values on reload (D-22). -->
+      <form id="form" autocomplete="off" novalidate>
+        <fieldset class="segmented">
+          <legend>How to split</legend>
+          <label><input type="radio" name="mode" value="even" checked /> <span>Split evenly</span></label>
+          <label><input type="radio" name="mode" value="order" /> <span>Split by order</span></label>
+        </fieldset>
+
+        <section class="card" aria-labelledby="receipt-heading">
+          <h2 id="receipt-heading">Receipt</h2>
+
+          <div class="field">
+            <label for="subtotal">Subtotal</label>
+            <input id="subtotal" name="subtotal" type="text" inputmode="decimal" autocomplete="off"
+                   spellcheck="false" aria-describedby="subtotal-error" />
+            <p class="error" id="subtotal-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="tax">Tax and service charges <span class="optional">(optional)</span></label>
+            <input id="tax" name="tax" type="text" inputmode="decimal" autocomplete="off"
+                   spellcheck="false" aria-describedby="tax-error" />
+            <p class="error" id="tax-error"></p>
+          </div>
+
+          <fieldset class="segmented tips">
+            <legend>Tip</legend>
+            <label><input type="radio" name="tip" value="0" /> <span>0%</span></label>
+            <label><input type="radio" name="tip" value="10" checked /> <span>10%</span></label>
+            <label><input type="radio" name="tip" value="15" /> <span>15%</span></label>
+            <label><input type="radio" name="tip" value="20" /> <span>20%</span></label>
+            <label><input type="radio" name="tip" value="custom" /> <span>Custom</span></label>
+          </fieldset>
+
+          <div class="field" id="custom-tip-field" hidden>
+            <label for="customTip">Custom tip (%)</label>
+            <input id="customTip" name="customTip" type="text" inputmode="decimal" autocomplete="off"
+                   spellcheck="false" aria-describedby="customTip-error" />
+            <p class="error" id="customTip-error"></p>
+          </div>
+        </section>
+
+        <section class="card" id="even-section" aria-labelledby="even-heading">
+          <h2 id="even-heading">People</h2>
+          <div class="field">
+            <label for="people">Number of people</label>
+            <input id="people" name="people" type="text" inputmode="numeric" autocomplete="off"
+                   spellcheck="false" aria-describedby="people-error" value="2" />
+            <p class="error" id="people-error"></p>
+          </div>
+        </section>
+
+        <section class="card" id="order-section" aria-labelledby="order-heading" hidden>
+          <h2 id="order-heading">Who ordered what</h2>
+          <ol id="rows" class="rows"></ol>
+          <div class="add-row">
+            <button type="button" id="add-row" class="secondary">Add person</button>
+            <p class="note" id="add-row-note"></p>
+          </div>
+        </section>
+
+        <div class="actions">
+          <button type="button" id="reset" class="secondary">Reset</button>
+        </div>
+      </form>
+
+      <section class="card results" aria-labelledby="results-heading">
+        <h2 id="results-heading">Results</h2>
+        <div id="results" aria-live="polite">
+          <p id="results-message" class="results-message"></p>
+          <dl id="receipt" class="receipt" hidden></dl>
+          <ul id="split" class="split" hidden></ul>
+          <p id="warning" class="warning" role="note" hidden></p>
+          <div id="table-wrap" class="table-wrap" hidden>
+            <table id="table">
+              <caption class="visually-hidden">What each person owes</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Person</th>
+                  <th scope="col" class="num">Ordered</th>
+                  <th scope="col" class="num">Share of tax and tip</th>
+                  <th scope="col" class="num">Owes</th>
+                </tr>
+              </thead>
+              <tbody id="table-body"></tbody>
+              <tfoot>
+                <tr>
+                  <th scope="row" colspan="3">Total</th>
+                  <td class="num" id="total-amount"></td>
+                </tr>
+              </tfoot>
+            </table>
+            <p id="total-note" class="total-note"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- A row of the "Split by order" list. Cloned by app.js; never rebuilt while typing (D-21). -->
+    <template id="row-template">
+      <li class="row">
+        <p class="row-label"></p>
+        <div class="row-fields">
+          <div class="field">
+            <label class="name-label">Name <span class="optional">(optional)</span></label>
+            <input class="name" type="text" maxlength="30" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="field">
+            <label class="ordered-label">Ordered</label>
+            <input class="ordered" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" />
+          </div>
+          <button type="button" class="remove secondary">Remove</button>
+        </div>
+        <p class="error"></p>
+      </li>
+    </template>
+  </body>
+</html>
