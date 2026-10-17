@@ -176,9 +176,9 @@ tests/                  the automated tests, helpers.js and the manual checklist
 ## AI tool and model
 
 - **Tool:** Claude, in the Claude app, using its built-in code workspace (file editing, a shell, and a headless Chromium browser for checking the page). The workspace is built on Claude Code, and it loaded `CLAUDE.md` automatically, so the build rules written there applied throughout.
-- **Models.** The session log records which model wrote each reply:
-  - **Claude Sonnet 4.6** answered my first 5 messages (16 and 17 October, up to 22:43). That covers the summary of the brief, the first drafts of the three product documents, and the format checks of App Roles, Jobs To Be Done and User Stories.
-  - **Claude Opus 5.5** answered everything from message 6 onward (17 October, 22:47). That covers the strict review, the scope lock, the technical plan, all of the code and tests, the QA checks, the README and the deployment.
+- **Models.** The session log records which model wrote each reply. The switch happened on 17 October at about 22:47 (Pakistan time, UTC+5):
+  - **Claude Sonnet 4.6** answered everything before then (16 and 17 October). That covers the summary of the brief, the first drafts of the three product documents, and the format checks of App Roles, Jobs To Be Done and User Stories.
+  - **Claude Opus 5.5** answered everything from then on. That covers the strict review, the scope lock, the technical plan, all of the code and tests, the QA checks, the README and the deployment.
 
 All of the work happened in that one conversation. The plan was to build in a separate Claude Code session in a terminal (decision D-28), but no separate session was used: the code was written in the same conversation, in the workspace described above.
 
