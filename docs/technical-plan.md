@@ -24,6 +24,7 @@ Plain HTML, CSS and JavaScript (ES modules), with no build step and no packages 
 ```
 Zarrak-Khan-Calculator/
   README.md
+  .gitignore              # keeps node_modules, dist, build, coverage, logs and zips out of the repository
   package.json
   scripts/
     serve.js              # static server for src/, Node's http module only (D-17, D-23)
@@ -39,13 +40,14 @@ Zarrak-Khan-Calculator/
       messages.js         # every fixed message and template
       engine.js           # compute(state) → everything the screen shows
   tests/
-    money.test.js
-    validate.test.js
-    calc.test.js
-    engine.test.js        # acceptance criteria as tests, named by criterion ID
+    diner.test.js         # acceptance criteria of S-1, S-2 and S-3, named by criterion ID
+    organiser.test.js     # acceptance criteria of S-10, S-5, S-6 and S-7, named by criterion ID
+    calc.test.js          # the arithmetic: tip rounding, even split, proportional shares
+    money.test.js         # reading and formatting amounts
     messages.test.js      # every message matches user-stories.md exactly (D-25)
     safety.test.js        # 20,000 random inputs: no crash, no NaN, Infinity, undefined or blank result
     manual-checklist.md   # every v1 criterion by ID, with Chrome and Firefox columns (generated)
+    helpers.js            # shared test setup; not a test file itself
   docs/
     app-roles.md
     jobs-to-be-done.md
@@ -53,7 +55,7 @@ Zarrak-Khan-Calculator/
     scope-and-decisions.md
     technical-plan.md
   transcripts/
-  .github/workflows/pages.yml   # last priority (D-18)
+  .github/workflows/pages.yml   # tests, then publishes src/ to GitHub Pages (D-18; live)
 ```
 
 ## Architecture
