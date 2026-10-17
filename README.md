@@ -60,7 +60,7 @@ The backlog stories are fully specified but not built.
 
 Edge and Safari were not tested, so they are not claimed. The app uses only standard features that all four browsers support (ES modules and BigInt).
 
-A live copy on GitHub Pages is set up but **not yet published**. See [Live version](#live-version-optional). Running it locally, as described below, is the main way to review the app.
+A live copy runs on GitHub Pages at **https://xarrak.github.io/Zarrak-Khan-Calculator/** (see [Live version](#live-version-optional)). Running it locally, as described below, is still the main way to review the app.
 
 ## Prerequisites
 
@@ -114,9 +114,7 @@ The server keeps running in that terminal until you press **Ctrl+C**. To run `np
 
 ## Live version (optional)
 
-> **Not yet published.** Replace `<github-username>` below with the real link once the first deployment has finished, and remove this note.
-
-**https://&lt;github-username&gt;.github.io/Zarrak-Khan-Calculator/**
+**https://xarrak.github.io/Zarrak-Khan-Calculator/**
 
 This is a convenience copy of the same app. The local setup above is the main way to run and review it, and it is what the tests and the hand checks used.
 
